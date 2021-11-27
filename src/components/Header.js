@@ -1,5 +1,7 @@
 import React from 'react'
 import Logo from './Logo'
+import {Title} from '../styles/title/Title'
+import Button from '../styles/button/Button'
 
 const Header = () => {
     let companyName = "TNI"
@@ -24,6 +26,7 @@ const Header = () => {
 
     return (
         <div>
+            <Title>project react</Title>
             <h1>Hello {showMessage()}</h1>
             {companyAddress}
             {number*2}
@@ -43,6 +46,13 @@ const Header = () => {
             { isLogin ? <Logo /> : <p>Unlock</p>}
 
             <button onClick={showMe}>ClickMe</button>
+            
+            <Button onClick={showMe} keyword={false}>
+                ClickMe
+            </Button>
+            <Button onClick={showMe} keyword={true}>
+                ClickMe
+            </Button>
             <ul>
             {
                 products.map((product,index) => {
