@@ -14,8 +14,10 @@ function NavBar() {
                         <Nav className="me-auto">
                             {/*<Nav.Link href="#home">Home</Nav.Link>*/}
                             <NavLink className="nav-link" activeClassName="active" exact to="/">Home</NavLink>
+                            <NavLink className="nav-link" activeClassName="active" to="/product">Product</NavLink>
                             {/*<Nav.Link href="#link">Link</Nav.Link>*/}
                             <NavLink className="nav-link" activeClassName="active" to="/about">About</NavLink>
+                            <NavLink className="nav-link" activeClassName="active" to="/contact">Contact Us</NavLink>
                             <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                                 <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                                 <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
