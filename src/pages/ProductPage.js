@@ -1,5 +1,6 @@
 import axios from 'axios'
 import React from 'react'
+import { Link } from 'react-router-dom'
 import {Table, Image, Badge, Spinner, Button} from "react-bootstrap"
 import { BiCommentDetail } from "react-icons/bi";
 
@@ -76,7 +77,13 @@ const ProductPage = () => {
                                             <td><Badge variant="danger">{p.view}</Badge></td>
                                             {/*<td>{p.picture}</td>*/}
                                             <td><Image src={p.picture} rounded width = {60} /></td>
-                                            <td className="text-center"><Button variant="outline-info" href='/detail'>Click<BiCommentDetail/></Button></td>
+                                            <td className="text-center">
+                                                < Link to={`/detail/${p.id}/title/${p.title}`}>
+                                                    <Button variant="outline-info">
+                                                        Click<BiCommentDetail/>
+                                                    </Button>
+                                                </Link>
+                                            </td>
                                         </tr>
                                     )
                                 })
