@@ -1,16 +1,15 @@
 import React from 'react'
-import { useParams } from "react-router-dom"
+import { useParams, useHistory } from "react-router-dom"
 import axios from 'axios'
-import { Spinner, Card, CardDeck } from "react-bootstrap"
+import { Spinner, Card, CardDeck, Button } from "react-bootstrap"
 
 const DetailPage = () => {
 
     const { id, title } = useParams()
+    const history = useHistory()
 
     const [detail, setDetail] = React.useState([])
-
     const [loading, setLoading] = React.useState(false)
-
     const [error, setError] = React.useState(null)
 
     const getData = async (id) => {
@@ -54,7 +53,10 @@ const DetailPage = () => {
                 <div className="col-md-12 mt-2">
                     <h2>Detail Page</h2>
                     <p>{title} ({id})</p>
-                    <div className='row'>
+                    <Button variant="secondary" onClick={() => {
+                        history.goBack()
+                    }}>Back</Button>{' '}
+                    <div className='row mt-4'>
                         <CardDeck>
                             {
                                 detail.length > 0 ? (
