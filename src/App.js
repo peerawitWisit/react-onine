@@ -13,6 +13,9 @@ import ProductPage from "./pages/ProductPage";
 import ContactUs from "./pages/ContactUs";
 import DetailPage from "./pages/DetailPage";
 import HospitalPage from "./pages/hospital/HospitalPage";
+import CategoryPage from "./pages/CategoryPage";
+import CreatePage from "./pages/CreatePage";
+import EditPage from "./pages/EditPage";
 
 function App() {
   return (
@@ -27,7 +30,19 @@ function App() {
           <DetailPage/>
         </Route>
         <Route path='/hospital'><HospitalPage/></Route>
-      </Switch>
+        <Route path='/category' 
+              render={ ({match: {url}}) => (
+                <>
+                  <Route path={`${url}/`} exact><CategoryPage/></Route>
+                
+                  <Route path={`${url}/create`}><CreatePage/></Route>
+
+                  <Route path={`${url}/edit/:id`}><EditPage/></Route>
+                </>
+              ) }>
+                
+              </Route>
+        </Switch>
       <Footer/>
     </Router>
   );
