@@ -74,10 +74,18 @@ const CategoryPage = () => {
                                             <td>{c.id}</td>
                                             <td>{c.name}</td>
                                             <td><Button variant="outline-primary">Edits<BiEdit/></Button>
-                                            <Button variant="outline-danger ml-3" onClick={() => {
+                                            <Button variant="outline-danger ml-3" onClick={ async () => {
                                                 const isConfirm = window.confirm('Confirm to delete >> ' + c.name + '?')
                                                 if(isConfirm === true){
-                                                    
+                                                    try{
+                                                        const apiURL = 'https://api.codingthailand.com/api/category/'
+                                                        const resp = await axios.delete(apiURL+c.id)
+                                                        alert(resp.data.message)
+                                                        history.go(0)
+                                                    }
+                                                    catch(error){
+                                                        setError(error)
+                                                    }
                                                 }
                                             }}>Delete<BiEdit/></Button></td>
                                         </tr>

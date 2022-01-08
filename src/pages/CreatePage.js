@@ -30,7 +30,7 @@ const CreatePage = () => {
                     name: data.name
                 }
             )
-            alert("Add Data Success")
+            alert(resp.data.message)
             history.goBack()
         }
         catch(error){
