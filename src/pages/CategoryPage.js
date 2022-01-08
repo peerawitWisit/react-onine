@@ -73,8 +73,13 @@ const CategoryPage = () => {
                                         <tr key={c.id}>
                                             <td>{c.id}</td>
                                             <td>{c.name}</td>
-                                            <td><button type="button" class="btn btn-outline-primary">Edits<BiEdit/></button>
-                                            <button type="button" class="btn btn-outline-danger ml-3">Delete<BiEdit/></button></td>
+                                            <td><Button variant="outline-primary">Edits<BiEdit/></Button>
+                                            <Button variant="outline-danger ml-3" onClick={() => {
+                                                const isConfirm = window.confirm('Confirm to delete >> ' + c.name + '?')
+                                                if(isConfirm === true){
+                                                    
+                                                }
+                                            }}>Delete<BiEdit/></Button></td>
                                         </tr>
                                     )
                                 })
