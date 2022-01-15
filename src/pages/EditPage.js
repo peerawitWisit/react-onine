@@ -19,25 +19,26 @@ const EditPage = () => {
 
     const history = useHistory()
 
-    const { register, handleSubmit, formState:{ errors } } = useForm({
+    const { register, handleSubmit, formState:{ errors }, setValue } = useForm({
         resolver: yupResolver(schema)
       });
 
     const onSubmit = async (data) => {
         console.log(data)
-        // try{
-        //     const apiURL = 'https://api.codingthailand.com/api/category'
-        //     const resp = await axios.post(apiURL,
-        //         {
-        //             name: data.name
-        //         }
-        //     )
-        //     alert(resp.data.message)
-        //     history.goBack()
-        // }
-        // catch(error){
-        //     setError(error)
-        // }
+        try{
+            const apiURL = 'https://api.codingthailand.com/api/category'
+            const resp = await axios.put(apiURL,
+                {
+                    id:id,
+                    name: data.name
+                }
+            )
+            alert('updateเสร็จสิ้น')
+            history.goBack()
+        }
+        catch(error){
+            setError(error)
+        }
     }
 
     React.useEffect(() => {
@@ -46,8 +47,9 @@ const EditPage = () => {
 
     const getData = async (id) => {
         const resp = await axios.get('https://api.codingthailand.com/api/category/' + id);
-        console.log(resp.data)
-    }
+        //console.log(resp.data)
+        setValue('name',resp.data.name)
+    };
 
 
     if(error){
@@ -78,7 +80,7 @@ const EditPage = () => {
                         </Form.Group>
 
                         <Button variant="primary" type="submit">
-                            Submit
+                            Update
                         </Button>
                     </Form>
                 </div>
