@@ -3,11 +3,15 @@ import {Table, Badge, Spinner, Button} from "react-bootstrap"
 import axios from 'axios'
 import { BiEdit } from "react-icons/bi";
 import {Link, useHistory} from 'react-router-dom'
+import { useToasts } from 'react-toast-notifications';
+
 
 
 const CategoryPage = () => {
 
     const history = useHistory()
+
+    const {addToast } = useToasts()
 
     const [category, setCategory] = React.useState([])
 
@@ -81,8 +85,10 @@ const CategoryPage = () => {
                                                         try{
                                                             const apiURL = 'https://api.codingthailand.com/api/category/'
                                                             const resp = await axios.delete(apiURL+c.id)
-                                                            alert(resp.data.message)
+                                                            //alert(resp.data.message)                                                            
+                                                            addToast(resp.data.data.message , {appearance:'success'})
                                                             history.go(0)
+                                                            
                                                         }
                                                         catch(error){
                                                             setError(error)

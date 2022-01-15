@@ -16,35 +16,40 @@ import HospitalPage from "./pages/hospital/HospitalPage";
 import CategoryPage from "./pages/CategoryPage";
 import CreatePage from "./pages/CreatePage";
 import EditPage from "./pages/EditPage";
+import UploadPage from "./pages/UploadPage";
+import { ToastProvider } from 'react-toast-notifications';
 
 function App() {
   return (
-    <Router>
-      <NavBar/>
-      <Switch>
-        <Route exact path='/'><HomePage/></Route>
-        <Route path='/about'><AboutPage/></Route>
-        <Route path='/product'><ProductPage/></Route>
-        <Route path='/contact'><ContactUs/></Route>
-        <Route path='/detail/:id/title/:title'>
-          <DetailPage/>
-        </Route>
-        <Route path='/hospital'><HospitalPage/></Route>
-        <Route path='/category' 
-              render={ ({match: {url}}) => (
-                <>
-                  <Route path={`${url}/`} exact><CategoryPage/></Route>
+    <ToastProvider placement="top-center">
+      <Router>
+        <NavBar/>
+        <Switch>
+          <Route exact path='/'><HomePage/></Route>
+          <Route path='/about'><AboutPage/></Route>
+          <Route path='/product'><ProductPage/></Route>
+          <Route path='/contact'><ContactUs/></Route>
+          <Route path='/detail/:id/title/:title'>
+            <DetailPage/>
+          </Route>
+          <Route path='/hospital'><HospitalPage/></Route>
+          <Route path='/upload'><UploadPage/></Route>
+          <Route path='/category' 
+                render={ ({match: {url}}) => (
+                  <>
+                    <Route path={`${url}/`} exact><CategoryPage/></Route>
                 
-                  <Route path={`${url}/create`}><CreatePage/></Route>
+                    <Route path={`${url}/create`}><CreatePage/></Route>
 
-                  <Route path={`${url}/edit/:id`}><EditPage/></Route>
-                </>
-              ) }>
+                    <Route path={`${url}/edit/:id`}><EditPage/></Route>
+                  </>
+                ) }>
                 
-              </Route>
-        </Switch>
-      <Footer/>
-    </Router>
+                </Route>
+          </Switch>
+        <Footer/>
+      </Router>
+    </ToastProvider>
   );
 }
 

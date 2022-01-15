@@ -30,6 +30,7 @@ function NavBar() {
                                     history.replace('/category')
                                 }}>News  Category</NavDropdown.Item>
                             </NavDropdown>
+                            <NavLink className="nav-link" activeClassName="active" to="/upload">Upload</NavLink>
                         </Nav>
                     </Navbar.Collapse>
                 </Container>

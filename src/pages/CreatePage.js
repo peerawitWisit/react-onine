@@ -5,7 +5,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
 import axios from 'axios';
 import {useParams ,useHistory} from 'react-router-dom'
-
+import { useToasts } from 'react-toast-notifications';
 
 const schema = yup.object({
     name: yup.string().required('Category news cannot be null'),
@@ -14,6 +14,8 @@ const schema = yup.object({
 const CreatePage = () => {
 
     const [error, setError] = React.useState(null)
+
+    const {addToast } = useToasts()
 
     const history = useHistory()
 
@@ -30,7 +32,8 @@ const CreatePage = () => {
                     name: data.name
                 }
             )
-            alert(resp.data.message)
+            //alert(resp.data.message)
+            addToast(resp.data.message , {appearance:'success', autoDismiss:true})
             history.goBack()
         }
         catch(error){
