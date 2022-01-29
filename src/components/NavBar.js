@@ -6,6 +6,20 @@ function NavBar() {
 
     const history = useHistory()
 
+    const [profile,setProfile] = React.useState(null)
+
+    const getProfile = () => {
+        //localStorage.getItem('profile')
+        const profileValue = JSON.parse(localStorage.getItem('profile'))
+        if(profileValue){
+            setProfile(profileValue)
+        }
+    }
+
+    React.useEffect(() => {
+        getProfile()
+    },[])
+
     return (
         <div>
             <Navbar bg="light" expand="lg">
@@ -14,7 +28,7 @@ function NavBar() {
                     <NavLink className="navbar-brand" exact to="/">React-Boostrap</NavLink>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
-                        <Nav className="me-auto">
+                        <Nav className="mr-auto">
                             {/*<Nav.Link href="#home">Home</Nav.Link>*/}
                             <NavLink className="nav-link" activeClassName="active" exact to="/">Home</NavLink>
                             <NavLink className="nav-link" activeClassName="active" to="/product">Product</NavLink>
@@ -33,10 +47,18 @@ function NavBar() {
                             <NavLink className="nav-link" activeClassName="active" to="/upload">Upload</NavLink>
                         </Nav>
 
-                        <Nav>
-                            <NavLink className="nav-link" activeClassName="active" to="/register">Register</NavLink>
-                            <NavLink className="nav-link" activeClassName="active" to="/login">Login</NavLink>
-                        </Nav>
+                        {
+                            profile ? (
+                                <span className='nav-text'>Welcome {profile.name} <button className='btn btn-danger ml-2'>Logout</button></span>
+                            ) : (
+                                <>
+                                    <Nav>
+                                        <NavLink className="nav-link" activeClassName="active" to="/register">Register</NavLink>
+                                        <NavLink className="nav-link" activeClassName="active" to="/login">Login</NavLink>
+                                    </Nav>
+                                </>
+                            )
+                        }
                     </Navbar.Collapse>
                 
             </Navbar>

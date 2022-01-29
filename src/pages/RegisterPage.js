@@ -60,7 +60,7 @@ const RegisterPage = () => {
         <div className="container">
             <div className="row">
                 <div className="col-md-12 mt-2">
-                    <h2>Add New Category</h2>
+                    <h2>Register</h2>
                     <Form onSubmit={handleSubmit(onSubmit)}>
                         
                         <Form.Group controlId="name">
