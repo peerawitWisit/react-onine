@@ -9,7 +9,7 @@ function NavBar() {
     return (
         <div>
             <Navbar bg="light" expand="lg">
-                <Container>
+                
                     {/*<Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>*/}
                     <NavLink className="navbar-brand" exact to="/">React-Boostrap</NavLink>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -32,8 +32,13 @@ function NavBar() {
                             </NavDropdown>
                             <NavLink className="nav-link" activeClassName="active" to="/upload">Upload</NavLink>
                         </Nav>
+
+                        <Nav>
+                            <NavLink className="nav-link" activeClassName="active" to="/register">Register</NavLink>
+                            <NavLink className="nav-link" activeClassName="active" to="/login">Login</NavLink>
+                        </Nav>
                     </Navbar.Collapse>
-                </Container>
+                
             </Navbar>
         </div>
     )

@@ -18,6 +18,8 @@ import CreatePage from "./pages/CreatePage";
 import EditPage from "./pages/EditPage";
 import UploadPage from "./pages/UploadPage";
 import { ToastProvider } from 'react-toast-notifications';
+import RegisterPage from "./pages/RegisterPage";
+import LoginPage from "./pages/LoginPage";
 
 function App() {
   return (
@@ -46,7 +48,9 @@ function App() {
                 ) }>
                 
                 </Route>
-          </Switch>
+          <Route path='/register'><RegisterPage/></Route>
+          <Route path='/login'><LoginPage/></Route>
+        </Switch>
         <Footer/>
       </Router>
     </ToastProvider>
