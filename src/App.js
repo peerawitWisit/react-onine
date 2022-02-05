@@ -23,44 +23,52 @@ import LoginPage from "./pages/LoginPage";
 import MemberPage from "./pages/MemberPage";
 import PrivateRoute from "./pages/guard/auth";
 import UserStoreProvider from "./context/UserContext"
+//redux
+import { Provider } from 'react-redux'
+import { createStore } from 'redux'
+import rootReducer from "./redux/reducers/index";
+
+const store = createStore(rootReducer)
 
 function App() {
   return (
-    <UserStoreProvider>
-      <ToastProvider placement="top-center">
-        <Router>
-          <NavBar />
-          <Switch>
-            <Route exact path='/'><HomePage /></Route>
-            <Route path='/about'><AboutPage /></Route>
-            <Route path='/product'><ProductPage /></Route>
-            <Route path='/contact'><ContactUs /></Route>
-            <Route path='/detail/:id/title/:title'>
-              <DetailPage />
-            </Route>
-            <Route path='/hospital'><HospitalPage /></Route>
-            <Route path='/upload'><UploadPage /></Route>
-            <Route path='/category'
-              render={({ match: { url } }) => (
-                <>
-                  <Route path={`${url}/`} exact><CategoryPage /></Route>
+    <Provider store={store}>
+      <UserStoreProvider>
+        <ToastProvider placement="top-center">
+          <Router>
+            <NavBar />
+            <Switch>
+              <Route exact path='/'><HomePage /></Route>
+              <Route path='/about'><AboutPage /></Route>
+              <Route path='/product'><ProductPage /></Route>
+              <Route path='/contact'><ContactUs /></Route>
+              <Route path='/detail/:id/title/:title'>
+                <DetailPage />
+              </Route>
+              <Route path='/hospital'><HospitalPage /></Route>
+              <Route path='/upload'><UploadPage /></Route>
+              <Route path='/category'
+                render={({ match: { url } }) => (
+                  <>
+                    <Route path={`${url}/`} exact><CategoryPage /></Route>
 
-                  <Route path={`${url}/create`}><CreatePage /></Route>
+                    <Route path={`${url}/create`}><CreatePage /></Route>
 
-                  <Route path={`${url}/edit/:id`}><EditPage /></Route>
-                </>
-              )}>
+                    <Route path={`${url}/edit/:id`}><EditPage /></Route>
+                  </>
+                )}>
 
-            </Route>
-            <PrivateRoute path='/member'><MemberPage /></PrivateRoute>
+              </Route>
+              <PrivateRoute path='/member'><MemberPage /></PrivateRoute>
 
-            <Route path='/register'><RegisterPage /></Route>
-            <Route path='/login'><LoginPage /></Route>
-          </Switch>
-          <Footer />
-        </Router>
-      </ToastProvider>
-    </UserStoreProvider>
+              <Route path='/register'><RegisterPage /></Route>
+              <Route path='/login'><LoginPage /></Route>
+            </Switch>
+            <Footer />
+          </Router>
+        </ToastProvider>
+      </UserStoreProvider>
+    </Provider>
   );
 }
 
