@@ -8,6 +8,8 @@ import axios from 'axios';
 import {useParams ,useHistory} from 'react-router-dom'
 import { useToasts } from 'react-toast-notifications';
 import {UserStoreContext} from '../context/UserContext'
+import {useDispatch} from 'react-redux'
+import { updateProfile } from '../redux/actions/authAction';
 
 const schema = yup.object({
     email: yup.string().required('อีเมลห้ามว่าง').email('อีเมลฟอร์แมตไม่ถูกต้อง'),
@@ -22,6 +24,8 @@ const LoginPage = () => {
 
     const userStore = React.useContext(UserStoreContext)
 
+    //call action by redux
+    const dispatch = useDispatch()
     const history = useHistory()
 
 
@@ -53,7 +57,8 @@ const LoginPage = () => {
             //console.log(respProfile.data)
             addToast('Login Successfully' , {appearance:'success', autoDismiss:true})
             const profileValue = JSON.parse(localStorage.getItem('profile'))
-            userStore.updateProfile(profileValue)
+            //userStore.updateProfile(profileValue)
+            dispatch(updateProfile(profileValue))
 
             history.replace('/')
             //history.go(0)
