@@ -27,6 +27,7 @@ import UserStoreProvider from "./context/UserContext"
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
 import rootReducer from "./redux/reducers/index";
+import Cart from "./pages/Cart";
 
 const store = createStore(rootReducer)
 
@@ -41,6 +42,7 @@ function App() {
               <Route exact path='/'><HomePage /></Route>
               <Route path='/about'><AboutPage /></Route>
               <Route path='/product'><ProductPage /></Route>
+              <Route path='/cart'><Cart/></Route>
               <Route path='/contact'><ContactUs /></Route>
               <Route path='/detail/:id/title/:title'>
                 <DetailPage />

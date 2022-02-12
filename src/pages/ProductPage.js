@@ -3,6 +3,8 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import {Table, Image, Badge, Spinner, Button} from "react-bootstrap"
 import { BiCommentDetail } from "react-icons/bi";
+import { addToCart } from '../redux/actions/cartAction';
+import { useSelector, useDispatch} from 'react-redux'
 
 const ProductPage = () => {
 
@@ -11,6 +13,11 @@ const ProductPage = () => {
     const [loading, setLoading] = React.useState(false)
 
     const [error, setError] = React.useState(null)
+
+    const dispatch = useDispatch()
+    const cart = useSelector((state) => state.cartReducer.cart)
+    const total = useSelector((state) => state.cartReducer.total)
+
 
     const getData = async() => {
         try{
@@ -45,6 +52,20 @@ const ProductPage = () => {
                 <p>{error.response.data.message}</p>
             </div>
         )
+    }
+
+    const addCart = (p) => {
+        //console.log(p)
+        const product = {
+            id: p.id,
+            name: p.title,
+            price: p.view, //สมมติให้ view = price
+            qty:1
+        }
+
+        //call action
+        dispatch(addToCart( product, cart))
+        console.log(cart)
     }
 
     return (
@@ -83,6 +104,8 @@ const ProductPage = () => {
                                                         Click<BiCommentDetail/>
                                                     </Button>
                                                 </Link>
+
+                                                <Button variant='outline-success' className='ml-2' onClick={() => addCart(p)}>Buy</Button>
                                             </td>
                                         </tr>
                                     )
